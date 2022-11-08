@@ -1,5 +1,6 @@
 
 const { dir } = require('console');
+let path = require('path');
 let fs = require('fs');
 const direct = path.join(__dirname, 'files-copy');
 // let direct = 'C:/Users/admin/HTML-builder/04-copy-directory/files-copy';
@@ -19,7 +20,7 @@ else{
     console.log('Папка успешно создана');
 }
 });
-let path = require('path');
+
 let readFrom = path.join(__dirname, 'files');;
 let copyDir = path.join(__dirname, 'files-copy');
 function listObjects(dir,copyDir){
