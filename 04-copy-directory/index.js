@@ -1,7 +1,8 @@
 
 const { dir } = require('console');
 let fs = require('fs');
-let direct = 'C:/Users/admin/HTML-builder/04-copy-directory/files-copy';
+const direct = path.join(__dirname, 'files-copy');
+// let direct = 'C:/Users/admin/HTML-builder/04-copy-directory/files-copy';
 fs.mkdir(direct, err => {
    if(err) {
     console.log('Папка уже создана');
@@ -19,14 +20,14 @@ else{
 }
 });
 let path = require('path');
-let readFrom = 'C:/Users/admin/HTML-builder/04-copy-directory/files';
-let copyDir = 'C:/Users/admin/HTML-builder/04-copy-directory/files-copy';
+let readFrom = path.join(__dirname, 'files');;
+let copyDir = path.join(__dirname, 'files-copy');
 function listObjects(dir,copyDir){
     fs.readdir(dir, (err, files) => {
         
        for (let file of files){
          
-          fs.stat(`C:/Users/admin/HTML-builder/06-build-page/assets`, (errStat, status) => {
+          fs.stat(readFrom, (errStat, status) => {
              if(errStat) {
                 throw errStat
              }else{

@@ -1,6 +1,7 @@
 var fs = require('fs');
 let path = require('path');
-let direct = '/Users/admin/HTML-builder/03-files-in-folder/secret-folder'
+const direct = path.join(__dirname, 'secret-folder'); 
+// let direct = '/Users/admin/HTML-builder/03-files-in-folder/secret-folder'
 let getFiles = function (dir){
     
     let secretFile =  [];
@@ -15,8 +16,9 @@ let getFiles = function (dir){
                 if (err) {
                   console.log(`File doesn't exist.`)
                 } else if(stats.isDirectory()) {
-                    direct +='/'+path.basename(secretFile[i])
-                    getFiles(direct) 
+                    
+                    // direct +='/'+path.basename(secretFile[i])
+                    // getFiles(direct) 
                 }
                 else{
                     

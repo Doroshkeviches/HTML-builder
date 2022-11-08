@@ -4,8 +4,19 @@
 let path = require('path');
 const http = require("http");
 const fs = require("fs");
+const direct1 = path.join(__dirname, 'project-dist');
+const direct2 = path.join(__dirname, 'project-dist','style.css');
+const direct3 = path.join(__dirname, 'project-dist','assets');
+const direct4 = path.join(__dirname, 'template.html');
+const direct5 = path.join(__dirname, 'components','header.html');
+const direct6 = path.join(__dirname, 'components','articles.html');
+const direct7 = path.join(__dirname, 'components','about.html');
+const direct8 = path.join(__dirname, 'components','footer.html');
+const direct9 = path.join(__dirname, 'project-dist','index.html');
+
+
  
-fs.mkdir('C:/Users/admin/HTML-builder/06-build-page/project-dist', err => {
+fs.mkdir(direct1, err => {
     
     // console.log('Папка успешно создана');
  });
@@ -13,11 +24,11 @@ fs.mkdir('C:/Users/admin/HTML-builder/06-build-page/project-dist', err => {
 //         if(err) throw err;
 //         // console.log('File created');
 //     });
-    fs.open('C:/Users/admin/HTML-builder/06-build-page/project-dist/style.css', 'w', (err) => {
+    fs.open(direct2, 'w', (err) => {
         if(err) throw err;
         // console.log('File created');
     });
-    fs.mkdir('C:/Users/admin/HTML-builder/06-build-page/project-dist/assets', err => {
+    fs.mkdir(direct3, err => {
     
         // console.log('Папка успешно создана');
      });
@@ -26,26 +37,26 @@ fs.mkdir('C:/Users/admin/HTML-builder/06-build-page/project-dist', err => {
      let footer='';
      let about = ''
      fs.readFile(
-        'C:/Users/admin/HTML-builder/06-build-page/template.html', 
+        direct4, 
         'utf8',
         (err, template) => {
             if (err) throw err;
             
     
-fs.readFile('C:/Users/admin/HTML-builder/06-build-page/components/header.html', 'utf-8', (errorHeader,fileContentHeader) =>{
+fs.readFile(direct5, 'utf-8', (errorHeader,fileContentHeader) =>{
     if(errorHeader) throw errorHeader;
     header = template.replace('{{header}}', fileContentHeader);
  
-fs.readFile('C:/Users/admin/HTML-builder/06-build-page/components/articles.html', 'utf-8', (errorHeader,fileContentHeader) =>{
+fs.readFile(direct6, 'utf-8', (errorHeader,fileContentHeader) =>{
     if(errorHeader) throw errorHeader;
     articles = header.replace('{{articles}}', fileContentHeader);
     // console.log(articles)
-    fs.readFile('C:/Users/admin/HTML-builder/06-build-page/components/about.html', 'utf-8', (errorHeader,fileContentHeader) =>{
+    fs.readFile(direct7, 'utf-8', (errorHeader,fileContentHeader) =>{
         // if(errorHeader) throw errorHeader;
         about = articles.replace('{{about}}', fileContentHeader || '');
         // console.log(articles)
  
-fs.readFile('C:/Users/admin/HTML-builder/06-build-page/components/footer.html', 'utf-8', (errorHeader,fileContentHeader) =>{
+fs.readFile(direct8, 'utf-8', (errorHeader,fileContentHeader) =>{
     if(errorHeader) throw errorHeader;
     // console.log(typeof articles,'in')
     footer = about.replace('{{footer}}', fileContentHeader);
@@ -55,7 +66,7 @@ fs.readFile('C:/Users/admin/HTML-builder/06-build-page/components/footer.html', 
 // console.log(typeof footer,'after')
 
 fs.writeFile(
-    'C:/Users/admin/HTML-builder/06-build-page/project-dist/index.html',
+    direct9,
     footer,
     (err) => {
         if (err) throw err;
@@ -68,14 +79,14 @@ fs.writeFile(
 })
 }) 
 
-let readFrom = 'C:/Users/admin/HTML-builder/06-build-page/assets';
-let copyDir = 'C:/Users/admin/HTML-builder/06-build-page/project-dist/assets'
+let readFrom = path.join(__dirname, 'assets');
+let copyDir = direct3
 function listObjects(dir,copyDir){
     fs.readdir(dir, (err, files) => {
         
        for (let file of files){
          
-          fs.stat(`C:/Users/admin/HTML-builder/06-build-page/assets`, (errStat, status) => {
+          fs.stat(direct3, (errStat, status) => {
              if(errStat) {
                 throw errStat
              }else{
@@ -107,7 +118,7 @@ function listObjects(dir,copyDir){
 
 
  
-let direct = 'C:/Users/admin/HTML-builder/06-build-page/styles';
+let direct = path.join(__dirname, 'styles');
 
 
 
@@ -127,7 +138,7 @@ function copyFile (dir){
                         if (err) throw err;
                             toWrite.push(fileContent)
                             let b = toWrite.join('')
-                            fs.writeFile('C:/Users/admin/HTML-builder/06-build-page/project-dist/style.css', b, function(error){
+                            fs.writeFile(direct2, b, function(error){
                     if(error) throw error; // ошибка чтения файла, если есть
                     console.log('Данные успешно записаны записать файл');
                  });

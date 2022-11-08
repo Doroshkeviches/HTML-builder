@@ -1,10 +1,14 @@
 
 const fs = require('fs');
+const path = require('path');
+const dir = path.join(__dirname, 'text.txt'); 
+
 const fileContent = fs.createReadStream(
-    'C:/Users/admin/HTML-builder/01-read-file/text.txt', 
+    dir, 
     );
     fileContent.on('data', function (text) {
         console.log(text.toString());
+       
     });
 
 

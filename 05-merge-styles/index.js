@@ -1,8 +1,8 @@
 let fs = require('fs');
-let direct = 'C:/Users/admin/HTML-builder/05-merge-styles/styles';
-
 let path = require('path');
+const direct = path.join(__dirname, 'styles');
 const { text } = require('stream/consumers');
+const direct2 = path.join(__dirname, 'project-dist', 'bundle.css');
 
 let arr =  [];
 function copyFile (dir){
@@ -32,7 +32,7 @@ function copyFile (dir){
                             let b = toWrite.join('')
                             
 
-                            fs.writeFile('C:/Users/admin/HTML-builder/05-merge-styles/project-dist/bundle.css', b, function(error){
+                            fs.writeFile(direct2, b, function(error){
                     if(error) throw error; // ошибка чтения файла, если есть
                     console.log('Данные успешно записаны записать файл');
                  });
